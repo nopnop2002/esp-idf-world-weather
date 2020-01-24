@@ -932,7 +932,11 @@ void tft(void *pvParameters)
 	// Show header
 	uint8_t ascii[44];
 	uint16_t ypos = fontHeight-1;
-	sprintf((char *)ascii, "World Weather %.12s", weather.title);
+	if (strlen(weather.title) < 13) {
+		sprintf((char *)ascii, "World Weather %.12s", weather.title);
+	} else {
+		sprintf((char *)ascii, "%.26s", weather.title);
+	}
 	uint16_t title_len = strlen((char *)ascii) * fontWidth;
 	uint16_t xpos_title = 0;
 	if (SCREEN_WIDTH > title_len) xpos_title = (SCREEN_WIDTH - title_len) / 2;
