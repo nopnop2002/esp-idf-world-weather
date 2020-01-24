@@ -141,13 +141,13 @@ https://www.metaweather.com/api/location/search/?query=kyo
 ]
 ```
 
-WOEID of TOKYO is 1118370.
+WOEID of TOKYO is 1118370.   
 You can use test.py for confirmation.
 
 # Operation
 
 ## View1
-Initisla screen.   
+Initial screen.   
 Press Left button briefly.   
 
 ## View2
