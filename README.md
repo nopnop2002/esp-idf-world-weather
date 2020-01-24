@@ -154,6 +154,8 @@ You can use test.py for confirmation.
 ## View1
 Initial screen.   
 Press Left button briefly.   
+Left:Gothic font.   
+Right:Mincyo font.   
 ![view1](https://user-images.githubusercontent.com/6020549/73107772-0b685600-3f42-11ea-88a9-54d043848aa4.JPG)
 
 ## View2
