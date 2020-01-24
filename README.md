@@ -12,7 +12,7 @@ M5Stack
 ---
 
 # Firmware configuration
-You have to set this config value with menuconfig.   
+You have to set this config value using menuconfig.   
 
 - CONFIG_ESP_WIFI_SSID   
 SSID of your wifi.
