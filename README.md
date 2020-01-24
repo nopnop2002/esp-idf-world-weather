@@ -1,5 +1,5 @@
 # esp-idf-world-weather
-Display the weather forecast on M5Stack.
+Display the weather forecast on M5Stack.   
 Get the weather forecast from https://www.metaweather.com/api/   
 No registration is required.   
 You can use this application immediately.   
@@ -27,22 +27,22 @@ make menuconfig
 make flash
 ```
 
-## CONFIG_ESP_WIFI_SSID
+- CONFIG_ESP_WIFI_SSID
 SSID of your wifi.
 
-##CONFIG_ESP_WIFI_PASSWORD   
+- CONFIG_ESP_WIFI_PASSWORD   
 PASSWORD of your wifi.
 
-##CONFIG_ESP_MAXIMUM_RETRY   
+- CONFIG_ESP_MAXIMUM_RETRY   
 Maximum number of retries when connecting to wifi.
 
-##CONFIG_ESP_WOEID   
+- CONFIG_ESP_WOEID   
 WOEID(Where On Earth IDentifier) which you want to display the weather forecast.
 
-##CONFIG_ESP_UPDATE_PERIOD   
+- CONFIG_ESP_UPDATE_PERIOD   
 Display update cycle (minutes)
 
-##CONFIG_ESP_FONT   
+- CONFIG_ESP_FONT   
 The font to use.
 
 ---
