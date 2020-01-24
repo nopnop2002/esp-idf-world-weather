@@ -144,6 +144,8 @@ https://www.metaweather.com/api/location/search/?query=kyo
 WOEID of TOKYO is 1118370.   
 You can use test.py for confirmation.
 
+---
+
 # Operation
 
 ## View1
@@ -158,6 +160,8 @@ Press Right button briefly.
 
 ## View4
 Press and hold Left button.   
+The image file is published here.   
+/static/img/weather/png/X.png   
 
 ## View5
 Press and hold Middle button.   
@@ -165,3 +169,21 @@ Press and hold Middle button.
 ## View6
 Press and hold Right button.   
 
+---
+
+# Font File   
+You can add your original font file.   
+The format of the font file is the FONTX format.   
+Your font file is put in font directory.   
+Your font file is uploaded to SPIFFS partition using meke flash.   
+
+Please refer [this](http://elm-chan.org/docs/dosv/fontx_e.html) page about FONTX format.   
+
+```
+FontxFile yourFont[2];
+InitFontx(yourFont,"/spiffs/your_font_file_name","");
+uint8_t ascii[10];
+strcpy((char *)ascii, "MyFont");
+uint16_t color = RED;
+lcdDrawString(&dev, yourFont, x, y, ascii, color);
+```
