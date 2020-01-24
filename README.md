@@ -154,15 +154,20 @@ You can use test.py for confirmation.
 ## View1
 Initial screen.   
 Press Left button briefly.   
+![view1](https://user-images.githubusercontent.com/6020549/73107772-0b685600-3f42-11ea-88a9-54d043848aa4.JPG)
 
 ## View2
 Press Middle button briefly.   
+![view2](https://user-images.githubusercontent.com/6020549/73107778-0e634680-3f42-11ea-95d3-be31b6e818b9.JPG)
 
 ## View3
 Press Right button briefly.   
+![view3](https://user-images.githubusercontent.com/6020549/73107781-102d0a00-3f42-11ea-804b-7f678eea60bc.JPG)
 
 ## View4
 Press and hold Left button.   
+![view4](https://user-images.githubusercontent.com/6020549/73107786-11f6cd80-3f42-11ea-8954-151482557060.JPG)
+
 Image files can be downloaded here.   
 
 ```
@@ -180,9 +185,11 @@ wget https://www.metaweather.com/static/img/weather/png/c.png
 
 ## View5
 Press and hold Middle button.   
+![view5](https://user-images.githubusercontent.com/6020549/73107791-13c09100-3f42-11ea-902d-990fdf212dbf.JPG)
 
 ## View6
 Press and hold Right button.   
+![view6](https://user-images.githubusercontent.com/6020549/73107792-158a5480-3f42-11ea-8980-64d71d868d79.JPG)
 
 ---
 
