@@ -142,6 +142,9 @@ https://www.metaweather.com/api/location/search/?query=kyo
 ```
 
 WOEID of TOKYO is 1118370.   
+You can know the weather forecast of TOKYO.   
+https://www.metaweather.com/api/location/1118370/   
+
 You can use test.py for confirmation.
 
 ---
@@ -160,8 +163,20 @@ Press Right button briefly.
 
 ## View4
 Press and hold Left button.   
-The image file is published here.   
-/static/img/weather/png/X.png   
+Image files can be downloaded here.   
+
+```
+wget https://www.metaweather.com/static/img/weather/png/sn.png
+wget https://www.metaweather.com/static/img/weather/png/sl.png
+wget https://www.metaweather.com/static/img/weather/png/h.png
+wget https://www.metaweather.com/static/img/weather/png/t.png
+wget https://www.metaweather.com/static/img/weather/png/hr.png
+wget https://www.metaweather.com/static/img/weather/png/lr.png
+wget https://www.metaweather.com/static/img/weather/png/s.png
+wget https://www.metaweather.com/static/img/weather/png/hc.png
+wget https://www.metaweather.com/static/img/weather/png/lc.png
+wget https://www.metaweather.com/static/img/weather/png/c.png
+```
 
 ## View5
 Press and hold Middle button.   
