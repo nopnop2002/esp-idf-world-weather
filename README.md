@@ -39,6 +39,9 @@ make menuconfig
 make flash
 ```
 
+![config-1](https://user-images.githubusercontent.com/6020549/73102236-c4c02f00-3f34-11ea-9cea-93832df67bb9.jpg)
+![config-2](https://user-images.githubusercontent.com/6020549/73102240-c7228900-3f34-11ea-85d2-aaaae9636303.jpg)
+![config-3](https://user-images.githubusercontent.com/6020549/73102246-c853b600-3f34-11ea-841b-a64bf23f21df.jpg)
 
 ---
 
