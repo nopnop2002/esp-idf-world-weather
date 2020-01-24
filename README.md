@@ -13,21 +13,8 @@ M5Stack
 
 # Firmware configuration
 You have to set this config value with menuconfig.   
-CONFIG_ESP_WIFI_SSID   
-CONFIG_ESP_WIFI_PASSWORD   
-CONFIG_ESP_MAXIMUM_RETRY   
-CONFIG_ESP_WOEID   
-CONFIG_ESP_UPDATE_PERIOD   
-CONFIG_ESP_FONT   
 
-```
-git clone https://github.com/nopnop2002/esp-idf-ili9340
-cd esp-idf-ili9340/
-make menuconfig
-make flash
-```
-
-- CONFIG_ESP_WIFI_SSID
+- CONFIG_ESP_WIFI_SSID   
 SSID of your wifi.
 
 - CONFIG_ESP_WIFI_PASSWORD   
@@ -44,6 +31,14 @@ Display update cycle (minutes)
 
 - CONFIG_ESP_FONT   
 The font to use.
+
+```
+git clone https://github.com/nopnop2002/esp-idf-ili9340
+cd esp-idf-ili9340/
+make menuconfig
+make flash
+```
+
 
 ---
 
