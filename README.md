@@ -142,6 +142,7 @@ https://www.metaweather.com/api/location/search/?query=kyo
 ```
 
 WOEID of TOKYO is 1118370.
+You can use test.py for confirmation.
 
 # Operation
 
