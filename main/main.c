@@ -272,7 +272,6 @@ char *JSON_Types(int type) {
 }
 
 void JSONtoStruct(const cJSON * const root, WEATHER_t * weather) {
-	//const char* valuestring = cJSON_GetObjectItem(root,"title")->valuestring;
 	const char* valuestring;
 	int valueint;
 	double valuedouble;
@@ -452,8 +451,15 @@ CJSON_PUBLIC(cJSON *) http_client_get_test(char * url)
 
 CJSON_PUBLIC(cJSON *) http_client_get(char * url)
 {
+#if 0
 	esp_http_client_config_t config = {
 		.url = "https://www.metaweather.com/api/location/1118370/",
+		.event_handler = _http_event_handler,
+		.cert_pem = metaweather_com_root_cert_pem_start,
+	};
+#endif
+	esp_http_client_config_t config = {
+		.url = url,
 		.event_handler = _http_event_handler,
 		.cert_pem = metaweather_com_root_cert_pem_start,
 	};
