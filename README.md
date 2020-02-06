@@ -16,19 +16,14 @@ You have to set this config value using menuconfig.
 
 - CONFIG_ESP_WIFI_SSID   
 SSID of your wifi.
-
 - CONFIG_ESP_WIFI_PASSWORD   
 PASSWORD of your wifi.
-
 - CONFIG_ESP_MAXIMUM_RETRY   
 Maximum number of retries when connecting to wifi.
-
 - CONFIG_ESP_WOEID   
 WOEID(Where On Earth IDentifier) which you want to display the weather forecast.
-
 - CONFIG_ESP_UPDATE_PERIOD   
 Display update cycle (minutes)
-
 - CONFIG_ESP_FONT   
 The font to use.
 
