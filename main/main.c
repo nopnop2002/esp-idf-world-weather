@@ -932,8 +932,10 @@ void tft(void *pvParameters)
 	StructSort(&weather);
 	cJSON_Delete(root);
 
+#if 0
 	// Stop wifi
 	wifi_stop_sta();
+#endif
 
 	// Show header
 	uint8_t ascii[44];
@@ -989,16 +991,20 @@ void tft(void *pvParameters)
 			view6(&dev, weather, fx, fontWidth, fontHeight);
 			func = view6;
 		} else if (cmdBuf.command == CMD_UPDATE) {
+#if 0
 			// Start wifi
 			wifi_start_sta(EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS, EXAMPLE_ESP_MAXIMUM_RETRY);
+#endif
 			cJSON *root = http_client_get(url);
 			//JSON_Dump(root);
 			JSONtoStruct(root, &weather);
 			StructSort(&weather);
 			cJSON_Delete(root);
 			(*func)(&dev, weather, fx, fontWidth, fontHeight);
+#if 0
 			// Stop wifi
 			wifi_stop_sta();
+#endif
 		}
 	}
 
@@ -1071,7 +1077,6 @@ void app_main()
 {
 	esp_log_level_set(TAG, ESP_LOG_INFO); 
 	//esp_log_level_set(TAG, ESP_LOG_DEBUG); 
-	esp_log_level_set("PING", ESP_LOG_WARN); 
 
 	// Initialize NVS
 	esp_err_t ret = nvs_flash_init();
