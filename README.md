@@ -11,6 +11,19 @@ M5Stack
 
 ---
 
+# Install
+
+```
+git clone https://github.com/nopnop2002/esp-idf-world-weather
+cd esp-idf-world-weather
+chmod 777 getpem.sh
+./getpem.sh
+make menuconfig
+make flash monitor
+```
+
+---
+
 # Firmware configuration
 You have to set this config value using menuconfig.   
 
@@ -26,13 +39,6 @@ WOEID(Where On Earth IDentifier) which you want to display the weather forecast.
 Display update cycle (minutes)
 - CONFIG_ESP_FONT   
 The font to use.
-
-```
-git clone https://github.com/nopnop2002/esp-idf-ili9340
-cd esp-idf-ili9340/
-make menuconfig
-make flash
-```
 
 ![config-1](https://user-images.githubusercontent.com/6020549/73102236-c4c02f00-3f34-11ea-9cea-93832df67bb9.jpg)
 ![config-2](https://user-images.githubusercontent.com/6020549/73102240-c7228900-3f34-11ea-85d2-aaaae9636303.jpg)
