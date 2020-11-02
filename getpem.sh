@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Extract the root certificate from www.metaweather.com.
 
 #set -x
 
