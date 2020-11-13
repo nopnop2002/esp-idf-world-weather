@@ -171,7 +171,7 @@ Press Right button briefly.
 Press and hold Left button.   
 ![view4](https://user-images.githubusercontent.com/6020549/73107786-11f6cd80-3f42-11ea-8954-151482557060.JPG)
 
-Image files can be downloaded here.   
+I downloaded the image file from here.   
 
 ```
 wget https://www.metaweather.com/static/img/weather/png/sn.png
