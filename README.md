@@ -18,8 +18,9 @@ git clone https://github.com/nopnop2002/esp-idf-world-weather
 cd esp-idf-world-weather
 chmod 777 getpem.sh
 ./getpem.sh
-make menuconfig
-make flash monitor
+idf.py set-target esp32
+idf.py menuconfig
+idf.py flash monitor
 ```
 
 ---
