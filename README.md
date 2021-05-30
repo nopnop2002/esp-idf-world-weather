@@ -47,7 +47,9 @@ The font to use.
 ---
 
 # How to get WOEID
-Request WOEID at https://www.metaweather.com/api/#locationsearch.   
+How to use location search:   
+https://www.metaweather.com/api/#locationsearch.   
+
 Cities containing 'san':   
 https://www.metaweather.com/api/location/search/?query=san
 
