@@ -209,7 +209,7 @@ void vTimerCallback( TimerHandle_t xTimer ){
 	ESP_LOGI(TAG, "vTimerCallback");
 	CMD_t cmdBuf;
 	cmdBuf.command = CMD_UPDATE;
-	cmdBuf.taskHandle = xTimer;
+	cmdBuf.taskHandle = (TaskHandle_t)xTimer;
 	xQueueSend(xQueueCmd, &cmdBuf, 0);
 }
 
@@ -266,9 +266,9 @@ void app_main()
 
 #if 0
 	// for test
-	xTimers = xTimerCreate("connTmr", (60000 / portTICK_RATE_MS), pdTRUE, ( void * ) 0, vTimerCallback);
+	xTimers = xTimerCreate("connTmr", (60000 / portTICK_PERIOD_MS), pdTRUE, ( void * ) 0, vTimerCallback);
 #else
-	xTimers = xTimerCreate("connTmr", (xTimerPeriod / portTICK_RATE_MS), pdTRUE, ( void * ) 0, vTimerCallback);
+	xTimers = xTimerCreate("connTmr", (xTimerPeriod / portTICK_PERIOD_MS), pdTRUE, ( void * ) 0, vTimerCallback);
 #endif
 	configASSERT( xTimers );
 

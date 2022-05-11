@@ -4,14 +4,12 @@ Get the weather forecast from https://www.metaweather.com/api/
 No registration is required.   
 You can use this application immediately.   
 
----
 
 # Hardware requirements
 M5Stack
 
----
 
-# Install
+# Installation
 
 ```
 git clone https://github.com/nopnop2002/esp-idf-world-weather
@@ -23,9 +21,8 @@ idf.py menuconfig
 idf.py flash monitor
 ```
 
----
+# Configuration
 
-# Firmware configuration
 You have to set this config value using menuconfig.   
 
 - CONFIG_ESP_WIFI_SSID   
@@ -44,8 +41,6 @@ The font to use.
 ![config-1](https://user-images.githubusercontent.com/6020549/73102236-c4c02f00-3f34-11ea-9cea-93832df67bb9.jpg)
 ![config-2](https://user-images.githubusercontent.com/6020549/73102240-c7228900-3f34-11ea-85d2-aaaae9636303.jpg)
 ![config-3](https://user-images.githubusercontent.com/6020549/73102246-c853b600-3f34-11ea-841b-a64bf23f21df.jpg)
-
----
 
 # How to get WOEID
 How to use location search:   
@@ -151,7 +146,6 @@ https://www.metaweather.com/api/location/1118370/
 
 You can use test.py for confirmation.
 
----
 
 # Operation
 
@@ -197,8 +191,6 @@ Press and hold Middle button.
 Press and hold Right button.   
 ![view6](https://user-images.githubusercontent.com/6020549/73107792-158a5480-3f42-11ea-8980-64d71d868d79.JPG)
 
----
-
 # Font File   
 You can add your original fonts.   
 The format of the font file is the FONTX format.   
@@ -215,7 +207,6 @@ strcpy((char *)ascii, "MyFont");
 uint16_t color = RED;
 lcdDrawString(&dev, yourFont, x, y, ascii, color);
 ```
----
 
 # Font File Editor(FONTX Editor)   
 [There](http://elm-chan.org/fsw/fontxedit.zip) is a font file editor.   

@@ -1,10 +1,10 @@
 /* World Weather
 
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
+	 This example code is in the Public Domain (or CC0 licensed, at your option.)
 
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
+	 Unless required by applicable law or agreed to in writing, this
+	 software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+	 CONDITIONS OF ANY KIND, either express or implied.
 */
 #include <stdio.h>
 #include <string.h>
@@ -46,13 +46,13 @@ static const char *TAG = "M5STACK";
 
 /* Root cert for metaweather.com, taken from metaweather_com_root_cert.pem
 
-   The PEM file was extracted from the output of this command:
-   openssl s_client -showcerts -connect www.metaweather.com:443 </dev/null
+	 The PEM file was extracted from the output of this command:
+	 openssl s_client -showcerts -connect www.metaweather.com:443 </dev/null
 
-   The CA root cert is the last cert given in the chain of certs.
+	 The CA root cert is the last cert given in the chain of certs.
 
-   To embed it in the app binary, the PEM file is named
-   in the component.mk COMPONENT_EMBED_TXTFILES variable.
+	 To embed it in the app binary, the PEM file is named
+	 in the component.mk COMPONENT_EMBED_TXTFILES variable.
 */
 extern const char metaweather_com_root_cert_pem_start[] asm("_binary_metaweather_com_root_cert_pem_start");
 extern const char metaweather_com_root_cert_pem_end[]	asm("_binary_metaweather_com_root_cert_pem_end");
@@ -76,7 +76,7 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt)
 			break;
 		case HTTP_EVENT_ON_DATA:
 			ESP_LOGD(TAG, "HTTP_EVENT_ON_DATA, len=%d", evt->data_len);
-			ESP_LOGD(TAG, "HTTP_EVENT_ON_DATA, content_length=%d", esp_http_client_get_content_length(evt->client));
+			//ESP_LOGD(TAG, "HTTP_EVENT_ON_DATA, content_length=%d", esp_http_client_get_content_length(evt->client));
 			ESP_LOGD(TAG, "HTTP_EVENT_ON_DATA, output_len=%d", output_len);
 			// If user_data buffer is configured, copy the response into the buffer
 			if (evt->user_data) {
@@ -118,6 +118,9 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt)
 				ESP_LOGE(TAG, "Last mbedtls failure: 0x%x", mbedtls_err);
 			}
 			break;
+		case HTTP_EVENT_REDIRECT:
+			ESP_LOGD(TAG, "HTTP_EVENT_REDIRECT");
+			break;
 	}
 	return ESP_OK;
 }
@@ -127,19 +130,19 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt)
 // Left Button Monitoring
 void buttonA(void *pvParameters)
 {
-	ESP_LOGI(pcTaskGetTaskName(0), "Start");
+	ESP_LOGI(pcTaskGetName(0), "Start");
 	CMD_t cmdBuf;
 	//cmdBuf.command = CMD_VIEW1;
 	cmdBuf.taskHandle = xTaskGetCurrentTaskHandle();
 
 	// set the GPIO as a input
-	gpio_pad_select_gpio(GPIO_INPUT_A);
+	gpio_reset_pin(GPIO_INPUT_A);
 	gpio_set_direction(GPIO_INPUT_A, GPIO_MODE_DEF_INPUT);
 
 	while(1) {
 		int level = gpio_get_level(GPIO_INPUT_A);
 		if (level == 0) {
-			ESP_LOGI(pcTaskGetTaskName(0), "Push Button");
+			ESP_LOGI(pcTaskGetName(0), "Push Button");
 			TickType_t startTick = xTaskGetTickCount();
 			while(1) {
 				level = gpio_get_level(GPIO_INPUT_A);
@@ -159,19 +162,19 @@ void buttonA(void *pvParameters)
 // Middle Button Monitoring
 void buttonB(void *pvParameters)
 {
-	ESP_LOGI(pcTaskGetTaskName(0), "Start");
+	ESP_LOGI(pcTaskGetName(0), "Start");
 	CMD_t cmdBuf;
 	//cmdBuf.command = CMD_VIEW2;
 	cmdBuf.taskHandle = xTaskGetCurrentTaskHandle();
 
 	// set the GPIO as a input
-	gpio_pad_select_gpio(GPIO_INPUT_B);
+	gpio_reset_pin(GPIO_INPUT_B);
 	gpio_set_direction(GPIO_INPUT_B, GPIO_MODE_DEF_INPUT);
 
 	while(1) {
 		int level = gpio_get_level(GPIO_INPUT_B);
 		if (level == 0) {
-			ESP_LOGI(pcTaskGetTaskName(0), "Push Button");
+			ESP_LOGI(pcTaskGetName(0), "Push Button");
 			TickType_t startTick = xTaskGetTickCount();
 			while(1) {
 				level = gpio_get_level(GPIO_INPUT_B);
@@ -191,19 +194,19 @@ void buttonB(void *pvParameters)
 // Right Button Monitoring
 void buttonC(void *pvParameters)
 {
-	ESP_LOGI(pcTaskGetTaskName(0), "Start");
+	ESP_LOGI(pcTaskGetName(0), "Start");
 	CMD_t cmdBuf;
 	//cmdBuf.command = CMD_VIEW3;
 	cmdBuf.taskHandle = xTaskGetCurrentTaskHandle();
 
 	// set the GPIO as a input
-	gpio_pad_select_gpio(GPIO_INPUT_C);
+	gpio_reset_pin(GPIO_INPUT_C);
 	gpio_set_direction(GPIO_INPUT_C, GPIO_MODE_DEF_INPUT);
 
 	while(1) {
 		int level = gpio_get_level(GPIO_INPUT_C);
 		if (level == 0) {
-			ESP_LOGI(pcTaskGetTaskName(0), "Push Button");
+			ESP_LOGI(pcTaskGetName(0), "Push Button");
 			TickType_t startTick = xTaskGetTickCount();
 			while(1) {
 				level = gpio_get_level(GPIO_INPUT_C);
@@ -417,7 +420,7 @@ size_t http_client_content_length(char * url)
 	esp_http_client_config_t config = {
 		.url = url,
 		.event_handler = _http_event_handler,
-		//.user_data = local_response_buffer,		   // Pass address of local buffer to get response
+		//.user_data = local_response_buffer, // Pass address of local buffer to get response
 		.cert_pem = metaweather_com_root_cert_pem_start,
 	};
 	esp_http_client_handle_t client = esp_http_client_init(&config);
@@ -425,7 +428,7 @@ size_t http_client_content_length(char * url)
 	// GET
 	esp_err_t err = esp_http_client_perform(client);
 	if (err == ESP_OK) {
-		ESP_LOGD(TAG, "HTTP GET Status = %d, content_length = %d",
+		ESP_LOGD(TAG, "HTTP GET Status = %d, content_length = %lld",
 				esp_http_client_get_status_code(client),
 				esp_http_client_get_content_length(client));
 		content_length = esp_http_client_get_content_length(client);
@@ -447,7 +450,7 @@ esp_err_t http_client_content_get(char * url, char * response_buffer)
 	esp_http_client_config_t config = {
 		.url = url,
 		.event_handler = _http_event_handler,
-		.user_data = response_buffer,		   // Pass address of local buffer to get response
+		.user_data = response_buffer, // Pass address of local buffer to get response
 		.cert_pem = metaweather_com_root_cert_pem_start,
 	};
 	esp_http_client_handle_t client = esp_http_client_init(&config);
@@ -455,7 +458,7 @@ esp_err_t http_client_content_get(char * url, char * response_buffer)
 	// GET
 	esp_err_t err = esp_http_client_perform(client);
 	if (err == ESP_OK) {
-		ESP_LOGI(TAG, "HTTP GET Status = %d, content_length = %d",
+		ESP_LOGI(TAG, "HTTP GET Status = %d, content_length = %lld",
 				esp_http_client_get_status_code(client),
 				esp_http_client_get_content_length(client));
 		ESP_LOGD(TAG, "\n%s", response_buffer);
@@ -495,7 +498,7 @@ CJSON_PUBLIC(cJSON *) http_client_get(char * url)
 		vTaskDelay(100);
 	}
 	ESP_LOGI(TAG, "content_length=%d", content_length);
-	ESP_LOGI(TAG, "\n[%s]", response_buffer);
+	ESP_LOGD(TAG, "\n[%s]", response_buffer);
 
 	// Deserialize JSON
 	cJSON *root = NULL;
@@ -583,7 +586,7 @@ void view1(TFT_t *dev, WEATHER_t weather, FontxFile *fx, uint8_t fontWidth, uint
 	if (weather.daily[0].the_temp > 0.0) {
 		sprintf((char *)ascii, "temp     :%4.1f", weather.daily[0].the_temp); 
 	} else {
-		sprintf((char *)ascii, "temp     :%5.1f", weather.daily[0].the_temp); 
+		sprintf((char *)ascii, "temp    :%5.1f", weather.daily[0].the_temp); 
 	}
 	lcdDrawString(dev, fx, xpos, ypos, ascii, CYAN);
 	ypos = ypos + fontHeight;
@@ -745,10 +748,10 @@ void bmp_display(TFT_t *dev, char * file, int ypos, int width, int height) {
 
 		for (int row=0; row<h; row++) { // For each scanline...
 			if (row < _rows || row > _rowe) continue;
-			// Seek to start of scan line.	It might seem labor-
+			// Seek to start of scan line. It might seem labor-
 			// intensive to be doing this on every line, but this
 			// method covers a lot of gritty details like cropping
-			// and scanline padding.  Also, the seek only takes
+			// and scanline padding. Also, the seek only takes
 			// place if the file position actually needs to change
 			// (avoids a lot of cluster math in SD library).
 			// Bitmap is stored bottom-to-top order (normal BMP)
@@ -756,7 +759,7 @@ void bmp_display(TFT_t *dev, char * file, int ypos, int width, int height) {
 			int pos = result->header.offset + (h - 1 - row) * rowSize;
 			ESP_LOGD(TAG,"fseek start row=%d pos=%d",row, pos);
 			fseek(fp, pos, SEEK_SET);
-			ESP_LOGD(TAG,"fseek end   row=%d pos=%d",row, pos);
+			ESP_LOGD(TAG,"fseek end	row=%d pos=%d",row, pos);
 #endif
 
 			int buffidx = sizeof(sdbuffer); // Force buffer reload
@@ -766,7 +769,7 @@ void bmp_display(TFT_t *dev, char * file, int ypos, int width, int height) {
 				if (buffidx >= sizeof(sdbuffer)) { // Indeed
 					ESP_LOGD(TAG,"fread start row=%d",row);
 					fread(sdbuffer, sizeof(sdbuffer), 1, fp);
-					ESP_LOGD(TAG,"fread end   row=%d",row);
+					ESP_LOGD(TAG,"fread end row=%d",row);
 					buffidx = 0; // Set index to beginning
 				}
 				if (col < _cols || col > _cole) continue;
@@ -778,7 +781,7 @@ void bmp_display(TFT_t *dev, char * file, int ypos, int width, int height) {
 			} // end for col
 			ESP_LOGD(TAG,"lcdDrawMultiPixels start row=%d",row);
 			lcdDrawMultiPixels(dev, _x, row+_y, _w, colors);
-			ESP_LOGD(TAG,"lcdDrawMultiPixels end   row=%d",row);
+			ESP_LOGD(TAG,"lcdDrawMultiPixels end row=%d",row);
 		} // end for row
 		free(colors);
 	} // end if 
@@ -868,7 +871,7 @@ void tft(void *pvParameters)
 {
 	// Set initial view
 	int32_t screen_type = (int32_t)pvParameters;
-	ESP_LOGI(pcTaskGetTaskName(0), "Start screen_type=%d", screen_type);
+	ESP_LOGI(pcTaskGetName(0), "Start screen_type=%d", screen_type);
 
 	// Set font file
 	FontxFile fx[2];
@@ -884,18 +887,18 @@ void tft(void *pvParameters)
 	uint8_t fontWidth;
 	uint8_t fontHeight;
 	GetFontx(fx, 0, buffer, &fontWidth, &fontHeight);
-	ESP_LOGI(pcTaskGetTaskName(0), "fontWidth=%d fontHeight=%d",fontWidth,fontHeight);
+	ESP_LOGI(pcTaskGetName(0), "fontWidth=%d fontHeight=%d",fontWidth,fontHeight);
 
 	// Setup Screen
 	TFT_t dev;
 	spi_master_init(&dev, CS_GPIO, DC_GPIO, RESET_GPIO, BL_GPIO);
 	lcdInit(&dev, 0x9341, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
-	ESP_LOGI(pcTaskGetTaskName(0), "Setup Screen done");
+	ESP_LOGI(pcTaskGetName(0), "Setup Screen done");
 
 	int lines = (SCREEN_HEIGHT - fontHeight) / fontHeight;
-	ESP_LOGD(pcTaskGetTaskName(0), "SCREEN_HEIGHT=%d fontHeight=%d lines=%d", SCREEN_HEIGHT, fontHeight, lines);
+	ESP_LOGD(pcTaskGetName(0), "SCREEN_HEIGHT=%d fontHeight=%d lines=%d", SCREEN_HEIGHT, fontHeight, lines);
 	int ymax = (lines+1) * fontHeight;
-	ESP_LOGD(pcTaskGetTaskName(0), "ymax=%d",ymax);
+	ESP_LOGD(pcTaskGetName(0), "ymax=%d",ymax);
 
 	// Clear Screen
 	lcdFillScreen(&dev, BLACK);
@@ -905,11 +908,11 @@ void tft(void *pvParameters)
 	lcdSetScrollArea(&dev, 0, 0x0140, 0);
 
 	// Get Weather Information
-	ESP_LOGI(pcTaskGetTaskName(0), "woeid=%d",CONFIG_ESP_WOEID);
+	ESP_LOGI(pcTaskGetName(0), "woeid=%d",CONFIG_ESP_WOEID);
 	char url[64];
 	//https://www.metaweather.com/api/location/1118370/
 	sprintf(url, "http://www.metaweather.com/api/location/%d/", CONFIG_ESP_WOEID);
-	ESP_LOGI(pcTaskGetTaskName(0), "url=%s",url);
+	ESP_LOGI(pcTaskGetName(0), "url=%s",url);
 	WEATHER_t weather;
 
 	// for test
@@ -955,7 +958,7 @@ void tft(void *pvParameters)
 
 	while(1) {
 		xQueueReceive(xQueueCmd, &cmdBuf, portMAX_DELAY);
-		ESP_LOGI(pcTaskGetTaskName(0),"cmdBuf.command=%d", cmdBuf.command);
+		ESP_LOGI(pcTaskGetName(0),"cmdBuf.command=%d", cmdBuf.command);
 		if (cmdBuf.command == CMD_VIEW1) {
 			view1(&dev, weather, fx, fontWidth, fontHeight);
 			func = view1;
