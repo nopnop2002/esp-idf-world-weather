@@ -29,16 +29,16 @@
 
 
 // for M5Stack
-#define SCREEN_WIDTH	320
-#define SCREEN_HEIGHT	240
-#define CS_GPIO			14
-#define DC_GPIO			27
-#define RESET_GPIO		33
-#define BL_GPIO			32
+#define SCREEN_WIDTH  320
+#define SCREEN_HEIGHT 240
+#define CS_GPIO	14
+#define DC_GPIO	27
+#define RESET_GPIO 33
+#define BL_GPIO	32
 #define DISPLAY_LENGTH	26
-#define GPIO_INPUT_A	GPIO_NUM_39
-#define GPIO_INPUT_B	GPIO_NUM_38
-#define GPIO_INPUT_C	GPIO_NUM_37
+#define GPIO_INPUT_A GPIO_NUM_39
+#define GPIO_INPUT_B GPIO_NUM_38
+#define GPIO_INPUT_C GPIO_NUM_37
 
 extern QueueHandle_t xQueueCmd;
 
@@ -59,8 +59,8 @@ extern const char metaweather_com_root_cert_pem_end[]	asm("_binary_metaweather_c
 
 esp_err_t _http_event_handler(esp_http_client_event_t *evt)
 {
-	static char *output_buffer;  // Buffer to store response of http request from event handler
-	static int output_len;		 // Stores number of bytes read
+	static char *output_buffer; // Buffer to store response of http request from event handler
+	static int output_len; // Stores number of bytes read
 	switch(evt->event_id) {
 		case HTTP_EVENT_ERROR:
 			ESP_LOGD(TAG, "HTTP_EVENT_ERROR");
@@ -118,9 +118,11 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt)
 				ESP_LOGE(TAG, "Last mbedtls failure: 0x%x", mbedtls_err);
 			}
 			break;
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 0, 0)
 		case HTTP_EVENT_REDIRECT:
 			ESP_LOGD(TAG, "HTTP_EVENT_REDIRECT");
 			break;
+#endif
 	}
 	return ESP_OK;
 }
@@ -428,7 +430,11 @@ size_t http_client_content_length(char * url)
 	// GET
 	esp_err_t err = esp_http_client_perform(client);
 	if (err == ESP_OK) {
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 0, 0)
 		ESP_LOGD(TAG, "HTTP GET Status = %d, content_length = %lld",
+#else
+		ESP_LOGD(TAG, "HTTP GET Status = %d, content_length = %d",
+#endif
 				esp_http_client_get_status_code(client),
 				esp_http_client_get_content_length(client));
 		content_length = esp_http_client_get_content_length(client);
@@ -458,7 +464,11 @@ esp_err_t http_client_content_get(char * url, char * response_buffer)
 	// GET
 	esp_err_t err = esp_http_client_perform(client);
 	if (err == ESP_OK) {
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 0, 0)
 		ESP_LOGI(TAG, "HTTP GET Status = %d, content_length = %lld",
+#else
+		ESP_LOGI(TAG, "HTTP GET Status = %d, content_length = %d",
+#endif
 				esp_http_client_get_status_code(client),
 				esp_http_client_get_content_length(client));
 		ESP_LOGD(TAG, "\n%s", response_buffer);
